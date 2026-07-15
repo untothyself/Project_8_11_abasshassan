@@ -21,3 +21,12 @@ class Game:
         """Return a description of the game."""
 
         return f"{self.title} ({self.genre}) - {self.rating}/10"
+    
+    def to_dict(self):
+        "Turn game object into a dictionary"
+
+        return {
+            "title": self.title,
+            "genre": self.genre,
+            "rating": self.rating
+        }

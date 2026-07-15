@@ -6,13 +6,12 @@ Resources: Python Materials
 Date: July 2026
 """
 from game import Game
+from save_data import save_games, load_games
 
-games = []
+games = load_games()
 
 
 def display_menu():
-    """Display the program menu."""
-
     print("\n==============================")
     print(" Video Game Collection Manager ")
     print("==============================")
@@ -23,10 +22,10 @@ def display_menu():
 
 
 def view_games():
-    """Display all games."""
 
     if len(games) == 0:
-        print("\nYour collection is empty.")
+
+        print("\nNo games in collection.")
 
     else:
 
@@ -38,32 +37,29 @@ def view_games():
 
 
 def add_game():
-    """Add a new game."""
 
-    title = input("\nEnter game title: ")
+    title = input("\nTitle: ")
 
-    genre = input("Enter genre: ")
+    genre = input("Genre: ")
 
-    rating = int(input("Enter rating (1-10): "))
+    rating = int(input("Rating: "))
 
-    new_game = Game(title, genre, rating)
+    games.append(Game(title, genre, rating))
 
-    games.append(new_game)
-
-    print(f"{title} added successfully.")
+    print("Game added.")
 
 
 def remove_game():
-    """Remove a game."""
 
     if len(games) == 0:
 
-        print("\nNo games to remove.")
+        print("Collection empty.")
+
         return
 
     view_games()
 
-    choice = int(input("\nEnter game number: "))
+    choice = int(input("\nGame number: "))
 
     if 1 <= choice <= len(games):
 
@@ -73,17 +69,16 @@ def remove_game():
 
     else:
 
-        print("Invalid selection.")
+        print("Invalid choice.")
 
 
 def main():
-    """Run the program."""
 
     while True:
 
         display_menu()
 
-        choice = input("\nChoose an option: ")
+        choice = input("\nChoose: ")
 
         if choice == "1":
 
@@ -99,7 +94,12 @@ def main():
 
         elif choice == "4":
 
+            save_games(games)
+
+            print("Collection saved.")
+
             print("Goodbye!")
+
             break
 
         else:
