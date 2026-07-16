@@ -34,16 +34,17 @@ def load_games():
             data = json.load(file)
 
             for item in data:
-                game = Game(
-                    item["title"],
-                    item["genre"],
-                    item["rating"]
+                games.append(
+                    Game(
+                        item["title"],
+                        item["genre"],
+                        item["rating"]
+                    )
                 )
 
-                games.append(game)
-
     except FileNotFoundError:
-
-        games = []
+        print("No saved collection found. Start a new collection")
+    except json.JSONDecodeError:
+        print("Saved data is corrupt. start new collection.")
 
     return games

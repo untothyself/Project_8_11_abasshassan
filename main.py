@@ -12,6 +12,7 @@ games = load_games()
 
 
 def display_menu():
+    """Display the menu."""
     print("\n==============================")
     print(" Video Game Collection Manager ")
     print("==============================")
@@ -22,7 +23,7 @@ def display_menu():
 
 
 def view_games():
-
+    """Display all games"""
     if len(games) == 0:
 
         print("\nNo games in collection.")
@@ -37,12 +38,21 @@ def view_games():
 
 
 def add_game():
-
+    """Add new game"""
     title = input("\nTitle: ")
 
     genre = input("Genre: ")
 
-    rating = int(input("Rating: "))
+    while True:
+        try:
+            rating = int(input("rating (1-10): "))
+            if 1 <= rating <= 10:
+                break
+            print("Rating has to be between 1 and 10")
+
+        except ValueError:
+            print("Please enter a whole number.")
+
 
     games.append(Game(title, genre, rating))
 
@@ -50,7 +60,7 @@ def add_game():
 
 
 def remove_game():
-
+    """Remove a game."""
     if len(games) == 0:
 
         print("Collection empty.")
@@ -59,21 +69,24 @@ def remove_game():
 
     view_games()
 
-    choice = int(input("\nGame number: "))
+    try:
+        choice = int(input("\nGame number: "))
 
-    if 1 <= choice <= len(games):
+        if 1 <= choice <= len(games):
 
-        removed = games.pop(choice - 1)
+            removed = games.pop(choice - 1)
 
-        print(f"{removed.title} removed.")
+            print(f"{removed.title} removed.")
 
-    else:
+        else:
 
-        print("Invalid choice.")
+            print("Invalid choice.")
+    except ValueError:
+        print("Please enter a valid number.")
 
 
 def main():
-
+    """run the program"""
     while True:
 
         display_menu()
@@ -96,7 +109,7 @@ def main():
 
             save_games(games)
 
-            print("Collection saved.")
+            print("\nCollection saved.")
 
             print("Goodbye!")
 
