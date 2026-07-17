@@ -102,35 +102,34 @@ def remove_game():
 def main():
     """run the program"""
     while True:
-
+        
         display_menu()
 
-        choice = input("\nChoose: ")
+        try:
+            choice = input("\nChoose: ")
+        except KeyboardInterrupt:
+            print("\n\nInterrupted. Saving collection and exiting...")
+            save_games(games)
+            print("Collection saved.")
+            print("Goodbye!")
+            break
 
         if choice == "1":
-
             view_games()
 
         elif choice == "2":
-
             add_game()
 
         elif choice == "3":
-
             remove_game()
 
         elif choice == "4":
-
             save_games(games)
-
             print("\nCollection saved.")
-
             print("Goodbye!")
-
             break
 
         else:
-
             print("Invalid option.")
 
 

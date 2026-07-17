@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "title": "Borderlands",
+        "genre": "Shooter Looter",
+        "rating": 7,
+        "favorite": false
+    },
+    {
+        "title": "Scarlet Hollow",
+        "genre": "Visual Novel",
+        "rating": 10,
+        "favorite": true
+    }
+]
