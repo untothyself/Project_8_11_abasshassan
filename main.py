@@ -5,7 +5,7 @@ Purpose: Main program file for the video game collection manager.
 Resources: Python Materials
 Date: July 2026
 """
-from game import Game
+from game import Game, FavoriteGame
 from save_data import save_games, load_games
 
 games = load_games()
@@ -52,9 +52,23 @@ def add_game():
 
         except ValueError:
             print("Please enter a whole number.")
-
-
-    games.append(Game(title, genre, rating))
+    favorite = input("Favorite game? (y/n): ").lower()
+    if favorite == "y":
+        games.append(
+            FavoriteGame(
+                title,
+                genre,
+                rating
+            )
+        )
+    else:
+        games.append(
+            Game(
+                title, 
+                genre, 
+                rating
+            )
+        )
 
     print("Game added.")
 

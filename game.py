@@ -28,5 +28,23 @@ class Game:
         return {
             "title": self.title,
             "genre": self.genre,
-            "rating": self.rating
+            "rating": self.rating,
+            "favorite": False
+        }
+class FavoriteGame(Game):
+    """Represents a favorite game."""
+
+    def display(self):
+        """Display the game with a star."""
+
+        return f"⭐ {self.title} ({self.genre}) - {self.rating}/10"
+
+    def to_dict(self):
+        """Convert the object to a dictionary."""
+
+        return {
+            "title": self.title,
+            "genre": self.genre,
+            "rating": self.rating,
+            "favorite": True
         }

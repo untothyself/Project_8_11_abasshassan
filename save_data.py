@@ -7,7 +7,7 @@ Date: July 2026
 """
 
 import json
-from game import Game
+from game import Game, FavoriteGame
 
 
 def save_games(games):
@@ -34,13 +34,23 @@ def load_games():
             data = json.load(file)
 
             for item in data:
-                games.append(
-                    Game(
+                if item.get("favorite"):
+                    games.append(
+                     FavoriteGame(
                         item["title"],
                         item["genre"],
                         item["rating"]
                     )
                 )
+                else:
+                    games.append(
+                        Game(
+                            item["title"],
+                            item["genre"],
+                            item["rating"]
+                        )
+                    )
+            
 
     except FileNotFoundError:
         print("No saved collection found. Start a new collection")
